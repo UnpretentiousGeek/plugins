@@ -1,0 +1,40 @@
+{
+  "name": "pstack",
+  "version": "1.4.1",
+  "description": "Codex adaptation of Lauren Tan's pstack workflows, based on open-pstack 1.4.1.",
+  "author": {
+    "name": "Lauren Tan"
+  },
+  "homepage": "https://github.com/UnpretentiousGeek/plugins/blob/main/CODEX-PSTACK.md",
+  "repository": "https://github.com/UnpretentiousGeek/plugins",
+  "license": "MIT",
+  "keywords": [
+    "pstack",
+    "poteto-mode",
+    "workflow",
+    "principles",
+    "agent-style",
+    "subagents",
+    "unslop"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "logo": "./assets/logo.png",
+    "displayName": "pstack",
+    "shortDescription": "Rigorous, parallelizable agent workflows: go deep first, write less, verify everything",
+    "longDescription": "pstack guides agent work through poteto-mode's principles, parallel design exploration (architect/arena), adversarial multi-model review (interrogate), root-cause debugging, prose deslopping, and verified delivery. Skills are shared with the Claude Code build; on Codex, tool names resolve via the codex-tools mapping.",
+    "developerName": "Lauren Tan (original), open-pstack maintainers",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Work on this in poteto-mode.",
+      "Interrogate this diff with multiple models."
+    ],
+    "websiteURL": "https://github.com/UnpretentiousGeek/plugins/blob/main/CODEX-PSTACK.md",
+    "brandColor": "#7C3AED"
+  }
+}
