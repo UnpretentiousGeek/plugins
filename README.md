@@ -2,6 +2,19 @@
 
 Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own `.cursor-plugin/plugin.json` manifest.
 
+## Install pstack from this fork
+
+This fork adds a portable pstack plugin for Codex and Claude Code at `plugins/pstack/`. See [pstack installation and update instructions](CODEX-PSTACK.md) for Codex installation, local validation, and provenance.
+
+After the marketplace changes are pushed to `UnpretentiousGeek/plugins`, install pstack in Claude Code:
+
+```sh
+claude plugin marketplace add UnpretentiousGeek/plugins
+claude plugin install pstack@unpretentiousgeek-plugins
+```
+
+Start a fresh Claude Code session and run `/pstack:poteto-mode`. The Claude marketplace also keeps the existing `origin-apps` entry.
+
 ## Plugins
 
 | `name` | Plugin | Author | Category | `description` (from marketplace) |
