@@ -2,7 +2,7 @@
 
 This fork keeps Cursor's original `pstack/` directory and adds an installable plugin at `plugins/pstack/` for Codex and Claude Code. The Codex marketplace is at `.agents/plugins/marketplace.json`. The Claude marketplace is at `.claude-plugin/marketplace.json` and keeps the existing `origin-apps` entry.
 
-The portable plugin is adapted from [open-pstack 1.4.1](https://github.com/ericlitman/open-pstack/tree/de67e6b40511814171e5e4c8ad7af3b79f07c9ee/plugins/pstack), which ports Lauren Tan's original pstack workflows. Its `LICENSE`, `NOTICE.md`, `CHANGES.md`, and `UPSTREAM.md` are included with the plugin. The copied port tracks Cursor pstack through commit `f8abeddd1862dc73704e3d719dd73df0d51b8c71` (pstack 0.15.1). These are separate trees so a Git merge of Cursor's updates does not silently change the portable plugin.
+The portable plugin is adapted from [open-pstack 1.16.0](https://github.com/ericlitman/open-pstack/tree/b4c5e3d63318308b7e11f26b2bc156e7793d834a/plugins/pstack), which ports Lauren Tan's original pstack workflows. Its `LICENSE`, `NOTICE.md`, `CHANGES.md`, and `UPSTREAM.md` are included with the plugin. The copied port tracks Cursor pstack through commit `88d47514b82e7c44f00f2b2a72ff6dd12158038c` (pstack 0.15.29). These are separate trees so a Git merge of Cursor's updates does not silently change the portable plugin.
 
 ## Install in Codex
 
@@ -15,7 +15,7 @@ Start a new Codex task after installation. Ask Codex to use `pstack:poteto-mode`
 
 ## Install in Claude Code
 
-Push these local marketplace changes to the fork before installing from GitHub:
+Install from the fork on GitHub:
 
 ```sh
 claude plugin marketplace add UnpretentiousGeek/plugins
@@ -54,3 +54,7 @@ That updates `pstack/` and the other original Cursor plugins. It does **not** po
 After pushing an updated Codex plugin, refresh the marketplace with `codex plugin marketplace upgrade cursor-pstack-codex` and start a new task.
 
 After publishing updates for Claude Code, run `claude plugin marketplace update unpretentiousgeek-plugins` and start a fresh session.
+
+## Fork validation
+
+The portable runner tests use `docs/reference.md` from the same open-pstack revision. The model-name scan excludes the four provenance documents bundled at the plugin root because they record historical model names. Active skills and agents retain the upstream checks.
