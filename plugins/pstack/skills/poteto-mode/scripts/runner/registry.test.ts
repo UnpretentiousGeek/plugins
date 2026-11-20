@@ -85,10 +85,11 @@ describe("registry data", () => {
     }
   });
 
-  it("keeps the default efforts, the Claude rolling aliases and Sol's ultra", () => {
+  it("keeps the default efforts, the Claude rolling aliases and Codex ultra support", () => {
     expect(REGISTRY.families.map((entry) => [entry.name, entry.defaultEffort])).toEqual([
       ["fable", "max"],
       ["sol", "max"],
+      ["astra", "max"],
       ["grok", "xhigh"],
       ["opus", "max"],
       ["luna", "max"],
@@ -111,8 +112,8 @@ describe("registry data", () => {
       .map((entry) => [entry.name, entry.rolling!.revisionPrefix]))
       .toEqual([["fable", "claude-fable-"], ["opus", "claude-opus-"], ["sonnet", "claude-sonnet-"]]);
     expect(REGISTRY.families.filter((entry) => entry.provider === "codex").map((entry) => [entry.name, entry.model]))
-      .toEqual([["sol", "gpt-6.1-sol"], ["luna", "gpt-6-luna"]]);
-    expect(REGISTRY.families.filter((entry) => effortsOf(entry).includes("ultra")).map((entry) => entry.name)).toEqual(["sol"]);
+      .toEqual([["sol", "gpt-6.2-sol"], ["astra", "gpt-6.2-astra"], ["luna", "gpt-6-luna"]]);
+    expect(REGISTRY.families.filter((entry) => effortsOf(entry).includes("ultra")).map((entry) => entry.name)).toEqual(["sol", "astra"]);
   });
 
   it("keeps family names and (provider, model) pairs unique, and efforts ordered", () => {
@@ -302,7 +303,7 @@ describe("hand-written dispatch and setup rules", () => {
     expect(setup).toContain("that family's model stays the kept predecessor for steps 3 to 7: probe it, render it, and write it unchanged.");
     expect(setup).toContain("matching a kept predecessor to its family");
     expect(REGISTRY.families.flatMap((entry) => (entry.predecessors ?? []).map((kept) => `${entry.provider}:${kept.model}`)))
-      .toEqual(expect.arrayContaining(["codex:gpt-5.6-sol", "grok:grok-4.6"]));
+      .toEqual(expect.arrayContaining(["codex:gpt-5.6-sol", "codex:gpt-6.1-sol", "grok:grok-4.6"]));
   });
 
   it("passes full access only to an opted-in external Codex writer, and setup keeps the setting line", () => {
@@ -479,7 +480,7 @@ describe("resolveLane", () => {
     expect(() => devin("swe-1-7-medium", "max")).toThrow("effort max is not offered for devin:swe-1-7-medium; choose one of: default");
     expect(() => devin("swe-2", "max", "isolated-write"))
       .toThrow("provider devin does not support isolated-write; it supports only: read-only");
-    for (const [provider, model] of [["codex", "gpt-6.1-sol"], ["grok", "grok-4.7"], ["grok", "grok-4.5"]]) {
+    for (const [provider, model] of [["codex", "gpt-6.2-sol"], ["codex", "gpt-6.2-astra"], ["grok", "grok-4.7"], ["grok", "grok-4.5"]]) {
       expect(resolveLane(request({ parent: "claude", provider, model })).cliModel).toBe(model);
     }
   });
@@ -499,7 +500,7 @@ describe("resolveLane", () => {
 
   it("builds a bounded writer unless full access is requested, and refuses full access off a Codex writer", () => {
     const codex = (overrides: Partial<LaneRequest>) =>
-      resolveLane(request({ parent: "claude", provider: "codex", model: "gpt-6.1-sol", ...overrides }));
+      resolveLane(request({ parent: "claude", provider: "codex", model: "gpt-6.2-sol", ...overrides }));
     expect(codex({}).access).toEqual(access("read-only"));
     expect(codex({ writerSandbox: "bounded" }).access).toEqual(access("read-only"));
     expect(codex({ mode: "isolated-write" }).access).toEqual(access("isolated-write"));
