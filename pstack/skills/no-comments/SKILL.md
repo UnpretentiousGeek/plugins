@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # No comments
 
+On Codex or Claude Code, apply [marketplace dispatch](../poteto-mode/references/marketplace-dispatch.md) before selecting tools or models.
+
 Spawn Comment Sicko. Act on accepted findings.
 
 Defer to Comment Sicko's fresh perspective.

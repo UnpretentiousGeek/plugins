@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Swarm
 
+On Codex or Claude Code, apply [marketplace dispatch](../poteto-mode/references/marketplace-dispatch.md) before selecting tools or models.
+
 ## Start
 
 Open a todolist with one entry per phase before launching anything.

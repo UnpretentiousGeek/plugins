@@ -1,60 +1,25 @@
-# pstack for Codex and Claude Code
+# Cursor pstack for Codex and Claude Code
 
-This fork keeps Cursor's original `pstack/` directory and adds an installable plugin at `plugins/pstack/` for Codex and Claude Code. The Codex marketplace is at `.agents/plugins/marketplace.json`. The Claude marketplace is at `.claude-plugin/marketplace.json` and keeps the existing `origin-apps` entry.
+Both marketplaces install the same `pstack/` directory from Cursor. The fork adds marketplace manifests and [host-specific model routing](pstack/skills/poteto-mode/references/marketplace-dispatch.md).
 
-The portable plugin is adapted from [open-pstack 1.16.0](https://github.com/ericlitman/open-pstack/tree/b4c5e3d63318308b7e11f26b2bc156e7793d834a/plugins/pstack), which ports Lauren Tan's original pstack workflows. Its `LICENSE`, `NOTICE.md`, `CHANGES.md`, and `UPSTREAM.md` are included with the plugin. The copied port tracks Cursor pstack through commit `88d47514b82e7c44f00f2b2a72ff6dd12158038c` (pstack 0.15.29). These are separate trees so a Git merge of Cursor's updates does not silently change the portable plugin.
-
-## Install in Codex
+## Codex
 
 ```sh
-codex plugin marketplace add UnpretentiousGeek/plugins --ref main
+codex plugin marketplace add UnpretentiousGeek/plugins
 codex plugin add pstack@cursor-pstack-codex
 ```
 
-Start a new Codex task after installation. Ask Codex to use `pstack:poteto-mode` for a task. The full multi-model workflows need the external model CLIs described in the plugin's setup skill; the core skills can be read without those tools.
-
-## Install in Claude Code
-
-Install from the fork on GitHub:
+## Claude Code
 
 ```sh
 claude plugin marketplace add UnpretentiousGeek/plugins
 claude plugin install pstack@unpretentiousgeek-plugins
 ```
 
-Start a fresh Claude Code session and run `/pstack:poteto-mode` for a task.
+Start a fresh session and run `/pstack:poteto-mode`. Claude Code uses the signed-in Codex CLI for explicitly selected Codex roles.
 
-To validate and install from a local clone, run these commands at the repository root:
+## Updates
 
-```sh
-claude plugin validate .
-claude plugin validate ./plugins/pstack
-claude plugin marketplace add .
-claude plugin install pstack@unpretentiousgeek-plugins
-```
+Merge `upstream/main` from `cursor/plugins` to update pstack and the other Cursor plugins. When Cursor changes the pstack version, use the same version in both marketplace plugin manifests.
 
-## Update from Cursor
-
-In a clone of this fork, configure the original repository once:
-
-```sh
-git remote add upstream https://github.com/cursor/plugins.git
-```
-
-To receive Cursor changes:
-
-```sh
-git fetch upstream
-git merge upstream/main
-git push origin main
-```
-
-That updates `pstack/` and the other original Cursor plugins. It does **not** port the new pstack behavior to `plugins/pstack/`. Review the changes to `pstack/` since the commit recorded in `plugins/pstack/UPSTREAM.md`, adapt them in `plugins/pstack/`, update the provenance and version, validate the plugin for both Codex and Claude Code, then push. This review is necessary because Cursor-specific tools, model names, and automations need equivalents for each host.
-
-After pushing an updated Codex plugin, refresh the marketplace with `codex plugin marketplace upgrade cursor-pstack-codex` and start a new task.
-
-After publishing updates for Claude Code, run `claude plugin marketplace update unpretentiousgeek-plugins` and start a fresh session.
-
-## Fork validation
-
-The portable runner tests use `docs/reference.md` from the same open-pstack revision. The model-name scan excludes the four provenance documents bundled at the plugin root because they record historical model names. Active skills and agents retain the upstream checks.
+Refresh the marketplace with `codex plugin marketplace upgrade cursor-pstack-codex` or `claude plugin marketplace update unpretentiousgeek-plugins`. If the previous 1.16.0 plugin remains installed, remove it and install pstack again from the refreshed marketplace.

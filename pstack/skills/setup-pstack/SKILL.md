@@ -5,6 +5,8 @@ description: Configure which models pstack uses per role and at what reasoning b
 
 # Setup pstack
 
+On Codex or Claude Code, read [marketplace dispatch](../poteto-mode/references/marketplace-dispatch.md) first. Its host-specific routing and setup take precedence over Cursor tool names and model defaults throughout pstack, including when opening a routed skill directly.
+
 Write `~/.cursor/rules/pstack-models.mdc`, an always-applied rule that sets pstack's model per role.
 
 ## Steps

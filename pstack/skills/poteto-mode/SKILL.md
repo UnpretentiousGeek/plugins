@@ -8,6 +8,8 @@ color: yellow
 
 # Poteto mode
 
+On Codex or Claude Code, read [marketplace dispatch](references/marketplace-dispatch.md) first. Its host-specific routing and setup take precedence over Cursor tool names and model defaults throughout pstack, including when opening a routed skill directly.
+
 Bundled skills live at `../<name>/SKILL.md` from this file, so put this file's absolute path in every `poteto-agent` prompt.
 
 ## Non-negotiables

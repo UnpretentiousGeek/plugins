@@ -1,0 +1,25 @@
+{
+  "name": "pstack",
+  "version": "0.15.46",
+  "author": {
+    "name": "Lauren Tan"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pstack",
+    "poteto-mode",
+    "workflow",
+    "principles",
+    "agent-style",
+    "subagents",
+    "unslop"
+  ],
+  "description": "Cursor pstack workflows with Codex model routing.",
+  "homepage": "https://github.com/cursor/plugins/tree/main/pstack",
+  "repository": "https://github.com/UnpretentiousGeek/plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "pstack",
+    "logo": "./assets/logo.png"
+  }
+}

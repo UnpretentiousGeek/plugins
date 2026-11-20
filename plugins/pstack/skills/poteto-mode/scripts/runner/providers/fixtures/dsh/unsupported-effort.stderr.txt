@@ -1,1 +1,0 @@
-dsh: UNSUPPORTED_REASONING_EFFORT: provider "deepseek-official" model "deepseek-flash" does not support reasoning effort "medium"

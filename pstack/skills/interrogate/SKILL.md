@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Interrogate
 
+On Codex or Claude Code, apply [marketplace dispatch](../poteto-mode/references/marketplace-dispatch.md) before selecting tools or models.
+
 Adversaries try to break a change or a design. A finding survives only when a run proves it. Report the findings. Do not apply fixes.
 
 ## Frame

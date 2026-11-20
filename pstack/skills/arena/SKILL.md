@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Arena
 
+On Codex or Claude Code, apply [marketplace dispatch](../poteto-mode/references/marketplace-dispatch.md) before selecting tools or models.
+
 Open a todolist with one entry per phase (Frame, Fan out, Cross-judge, Pick, Graft, Verify) before launching anything.
 
 ## Phase A: Frame

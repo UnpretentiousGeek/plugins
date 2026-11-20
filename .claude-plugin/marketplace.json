@@ -12,8 +12,8 @@
     },
     {
       "name": "pstack",
-      "source": "./plugins/pstack",
-      "description": "Portable pstack workflows for Claude Code and Codex, including planning, implementation, code review, and verification."
+      "source": "./pstack",
+      "description": "Cursor pstack workflows for Claude Code and Codex, including planning, implementation, code review, and verification."
     }
   ]
 }

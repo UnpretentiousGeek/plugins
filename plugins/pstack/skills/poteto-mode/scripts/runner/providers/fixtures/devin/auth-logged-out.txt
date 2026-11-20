@@ -1,3 +1,0 @@
-Not logged in.
-  Credentials path: /home/fixture/.local/share/devin/credentials.toml
-Run `devin auth login` to authenticate.
